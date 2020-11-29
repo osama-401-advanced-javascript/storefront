@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const Categories = (props) => {
   const classes = useStyles();
   let categoriesToMap = props.category.categories;
-  // console.log('MAP???', categoriesToMap);
+  console.log('MAP???', categoriesToMap);
 
   return (
     <>

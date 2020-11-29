@@ -41,6 +41,7 @@ const initialState = {
   productsToDisplay: [],
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   const { type, payload } = action;
 
@@ -48,6 +49,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case 'change':
+      console.log('maleeeeek', payload);
       let targetCategory = payload.name;
       let productsToDisplay = state.products.filter((product) => {
         return product.category === targetCategory;

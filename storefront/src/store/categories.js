@@ -16,6 +16,7 @@ const initialState = {
   activeCategory: 'electronics',
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   const { type, payload } = action;
 
@@ -30,9 +31,9 @@ export default (state = initialState, action) => {
   }
 };
 
-export const activeCategory = (name) => {
-  return {
-    type: 'change',
-    payload: name,
-  };
-};
+// export const activeCategory = (name) => {
+//   return {
+//     type: 'change',
+//     payload: name,
+//   };
+// };

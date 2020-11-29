@@ -11,11 +11,14 @@ const Products = (props) => {
       <ul>
         {props.productsToDisplay.map((product) => {
           return (
-            <li key={product.name}>
-              <strong> {product.name} </strong>
-              <span key={product.price}> {product.price}</span>
-              <span key={product.inStock}> {product.inStock}</span>
-            </li>
+            <div key={product.name}>
+              <li key={product.name}>
+                <strong> {product.name} </strong>
+                <span key={product.price}> {product.price}</span>
+                <span key={product.inStock}> {product.inStock}</span>
+              </li>
+              <img src={product.image} alt={product.name} width='100' height='100'></img>
+            </div>
           );
         })}
       </ul>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeActiveCategory } from '../../store/products';
+import { changeActiveCategory, getCategories } from '../../store/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -12,14 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//TODO: Shows a list of all categories
-// Dispatches an action when one is clicked to “activate” it
-
 const Categories = (props) => {
   const classes = useStyles();
   let categoriesToMap = props.category.categories;
-  console.log('MAP???', categoriesToMap);
-
+  useEffect(() => {
+    props.getCategories();
+  });
   return (
     <>
       <div className={classes.root}>
@@ -27,8 +25,8 @@ const Categories = (props) => {
         <ul>
           {categoriesToMap.map((category) => {
             return (
-              <Button variant='contained' color='primary' key={category.displayName} onClick={() => props.changeActiveCategory(category)}>
-                {category.displayName}
+              <Button variant='contained' color='primary' key={category.name} onClick={() => props.changeActiveCategory(category)}>
+                {category.name}
               </Button>
             );
           })}
@@ -40,10 +38,10 @@ const Categories = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    category: state.categories, // maybe change this
+    category: state.categories,
   };
 };
 
-const mapDispatchToProps = { changeActiveCategory };
+const mapDispatchToProps = { changeActiveCategory, getCategories };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import { connect } from 'react-redux';
-import { add } from '../../store/actions';
+import { add, readAllProduct } from '../../store/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -13,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Products = (props) => {
+  useEffect(() => {
+    props.readAllProduct();
+  }, []);
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -38,11 +43,10 @@ const Products = (props) => {
   );
 };
 
-const mapDispatchToProps = { addItemToCart: add };
+const mapDispatchToProps = { addItemToCart: add, readAllProduct };
 const mapStateToProps = (state) => {
   // console.log('STATE???', state.products.products);
   return {
-    products: state.products.products,
     productsToDisplay: state.products.productsToDisplay,
   };
 };
